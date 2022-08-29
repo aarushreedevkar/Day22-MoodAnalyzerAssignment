@@ -6,7 +6,7 @@ namespace MSTestMoodAnalyzer
         [TestMethod]
         public void TestMethod1()
         {
-            void Given_Emptymood_Using_CustomException_Return_Empty()
+            void Class_is_not_Proper_Throw_An_Exceptioon()
             {
                 //Arrange;
                 MoodAnalyser mood = new MoodAnalyser("");
@@ -25,4 +25,3 @@ namespace MSTestMoodAnalyzer
         }
     }
 }
-
