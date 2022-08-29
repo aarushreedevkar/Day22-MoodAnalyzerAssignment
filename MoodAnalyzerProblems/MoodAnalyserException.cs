@@ -15,6 +15,8 @@ namespace MoodAnalyzerProblems
         /// </summary>
         /// creating type variable of type ExceptionType
         ExceptionType type;
+        readonly string message;
+
         public enum ExceptionType
         {
             NULL_EXCEPTION, EMPTY_EXCEPTION, NO_SUCH_FIELD, NO_SUCH_METHOD, NO_SUCH_CLASS, OBJECT_CREATION_ISSUE
@@ -27,6 +29,7 @@ namespace MoodAnalyzerProblems
         public MoodAnalyserException(ExceptionType type, string message) : base(message)
         {
             this.type = type;
+            this.message = message;
         }
     }
 }
