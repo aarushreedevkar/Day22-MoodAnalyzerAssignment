@@ -7,19 +7,21 @@ namespace MSTestMoodAnalyzer
         public void TestMethod1()
         {
             [TestMethod]
-            void Given_Happymood_Expecting_Happy_Results()
+            public void Given_Emptymood_Using_CustomException_Return_Empty()
             {
                 //Arrange;
-                MoodAnalyser mood = new MoodAnalyser(null);
-                string expected = "happy";
-
-                //Act
-                string actual = mood.Analyser();
-
-                //Asert
-                Assert.AreEqual(expected, actual);
-
-
+                MoodAnalyser mood = new MoodAnalyser("");
+                string expected = "Mood should not be empty";
+                try
+                {
+                    //Act
+                    string actual = mood.Analyser();
+                }
+                catch (MoodAnalyserException exception)
+                {
+                    //Asert
+                    Assert.AreEqual(expected, exception.Message);
+                }
             }
         }
     }
