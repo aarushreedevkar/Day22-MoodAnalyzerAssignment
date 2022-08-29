@@ -10,8 +10,9 @@ namespace MSTestMoodAnalyzer
             void Given_Happymood_Expecting_Happy_Results()
             {
                 //Arrange;
-                MoodAnalyser mood = new MoodAnalyser("I am in any mood");
-                string expected = "sad";
+                //Arrange;
+                MoodAnalyser mood = new MoodAnalyser(null);
+                string expected = "happy";
 
                 //Act
                 string actual = mood.Analyser();
