@@ -7,7 +7,7 @@ namespace MSTestMoodAnalyzer
         public void TestMethod1()
         {
             [TestMethod]
-             void Given_Happymood_Expecting_Happy_Results()
+            void Given_Happymood_Expecting_Happy_Results()
             {
                 //    //Arrange;
                 MoodAnalyser mood = new MoodAnalyser("I am in happy mood");
