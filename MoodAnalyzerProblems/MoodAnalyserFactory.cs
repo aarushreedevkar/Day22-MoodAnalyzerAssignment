@@ -10,51 +10,28 @@ namespace MoodAnalyzerProblems
 {
     public class MoodAnalyserFactory
     {
-        public static object CreateMoodAnalyse(string className, string constructorName)
+        public static string InvokeMethod(string className, string methodName, string message)
         {
-            string pattern = @"." + constructorName + "$";
-            Match result = Regex.Match(className, pattern);
-            if (result.Success)
+            Type type1 = typeof(MoodAnalyser);
+            try
             {
-                try
-                {
-                    Assembly executing = Assembly.GetExecutingAssembly();
-                    Type moodAnalyseType = executing.GetType(className);
-                    return Activator.CreateInstance(moodAnalyseType);
-                }
-                catch (ArgumentNullException)
-                {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class Not Found");
-                }
+                ConstructorInfo constructor = type1.GetConstructor(new[] { typeof(string) });
+                object obj = MoodAnalyserFactory.CreatedMoodAnalyserUsingParameterizedConstructor(className, methodName, message);
+                Assembly excutingAssambly = Assembly.GetExecutingAssembly();
+                Type type = excutingAssambly.GetType(className);
+                MethodInfo getMoodMethod = type.GetMethod(methodName);
+                string msg = (string)getMoodMethod.Invoke(obj, null);
+                return msg;
             }
-            else
+            catch (Exception)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Constructor is Not Found");
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.INVALID_INPUT, "No Such Method");
             }
         }
 
-        //UC5-Reflection using parameterized constructor
-        public static object CreatedMoodAnalyserUsingParameterizedConstructor(string className, string constructorName, string message)
+        private static object CreatedMoodAnalyserUsingParameterizedConstructor(string className, string methodName, string message)
         {
-            Type type = typeof(MoodAnalyser);
-            if (type.Name.Equals(className) || type.FullName.Equals(className))
-            {
-                if (type.Name.Equals(constructorName))
-                {
-                    ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string) });
-                    object instance = constructorInfo.Invoke(new object[] { message });
-                    return instance;
-                }
-                else
-                {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Constructor is not found");
-                }
-            }
-            else
-            {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
-
-            }
+            throw new NotImplementedException();
         }
     }
 }
