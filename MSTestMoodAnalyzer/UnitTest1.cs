@@ -10,7 +10,6 @@ namespace MSTestMoodAnalyzer
             void Given_Happymood_Expecting_Happy_Results()
             {
                 //Arrange;
-                //Arrange;
                 MoodAnalyser mood = new MoodAnalyser(null);
                 string expected = "happy";
 
@@ -19,6 +18,8 @@ namespace MSTestMoodAnalyzer
 
                 //Asert
                 Assert.AreEqual(expected, actual);
+
+
             }
         }
     }
