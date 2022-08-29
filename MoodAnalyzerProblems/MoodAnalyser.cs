@@ -8,6 +8,7 @@ namespace MoodAnalyzerProblems
 {
     public class MoodAnalyser
     {
+
         //instance variable
         string message;
 
@@ -18,19 +19,28 @@ namespace MoodAnalyzerProblems
         }
 
         //Analyser method to find mood
-        public string Analyser() //check msg passing into the constructor is contain(happy) then written happy else sad
+        public string Analyser() //check msg passing into the constructor 
         {
-            if (this.message.ToLower().Contains("happy"))
+            try
             {
-                return "happy";
+                if (this.message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_EXCEPTION, "Mood should not be empty");
+                }
+                if (this.message.ToLower().Contains("happy"))
+                {
+                    return "happy";
+                }
+                else
+                {
+                    return "sad";
+                }
             }
-            else
+            catch (NullReferenceException)
             {
-                return " sad";
+                //return ex.Message;
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_EXCEPTION, "Mood should not be null");
             }
         }
     }
 }
-
-    
-
