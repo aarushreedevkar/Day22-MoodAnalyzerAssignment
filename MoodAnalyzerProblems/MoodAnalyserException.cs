@@ -6,29 +6,27 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzerProblems
 {
-    
-    
-        public class MoodAnalyserException : Exception
+
+
+    public class MoodAnalyserException : Exception
+    {
+        /// <summary>
+        /// Enum of exception type.
+        /// </summary>
+        /// creating type variable of type ExceptionType
+        ExceptionType type;
+        public enum ExceptionType
         {
-            /// <summary>
-            /// Enum of exception type.
-            /// </summary>
-            /// creating type variable of type ExceptionType
-            ExceptionType type;
-            public enum ExceptionType
-            {
-                NULL_EXCEPTION, EMPTY_EXCEPTION
-            }
-            /// <summary>
-            /// parameterized contructor sets the Exception Type and message.
-            /// </summary>
-            /// <param name="type"></param>
-            /// <param name="message"></param>
-            public MoodAnalyserException(ExceptionType type, string message) : base(message)
-            {
-                this.type = type;
-            }
+            NULL_EXCEPTION, EMPTY_EXCEPTION, NO_SUCH_FIELD, NO_SUCH_METHOD, NO_SUCH_CLASS, OBJECT_CREATION_ISSUE
+        }
+        /// <summary>
+        /// parameterized contructor sets the Exception Type and message.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="message"></param>
+        public MoodAnalyserException(ExceptionType type, string message) : base(message)
+        {
+            this.type = type;
         }
     }
-
-
+}
