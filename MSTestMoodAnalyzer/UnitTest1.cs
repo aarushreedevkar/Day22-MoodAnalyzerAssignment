@@ -9,11 +9,11 @@ namespace MSTestMoodAnalyzer
             [TestMethod]
             void Given_Happymood_Expecting_Happy_Results()
             {
-                //    //Arrange;
-                MoodAnalyser mood = new MoodAnalyser("I am in happy mood");
-                string expected = "happy";
+                //Arrange;
+                MoodAnalyser mood = new MoodAnalyser("I am in any mood");
+                string expected = "sad";
 
-                //    //Act
+                //Act
                 string actual = mood.Analyser();
 
                 //Asert
